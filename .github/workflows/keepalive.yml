@@ -1,0 +1,21 @@
+name: Supabase keep-alive
+on:
+  schedule:
+    - cron: '0 6 * * 1,4'   # ogni lunedì e giovedì
+  workflow_dispatch:         # permette anche l'avvio manuale
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: MacroForma
+        run: |
+          curl -sf -o /dev/null -w "MacroForma: HTTP %{http_code}\n" \
+            "${{ secrets.https://cjkxvvphykgwdotncslr.supabase.co }}/rest/v1/diete?select=*&limit=1" \
+            -H "apikey: ${{ secrets.sb_publishable_8DUKvahi_e6ovJo5KewmUw_4fKR2SNW }}"
+
+      - name: Progetto 2
+        run: |
+          curl -sf -o /dev/null -w "Progetto 2: HTTP %{http_code}\n" \
+            "${{ secrets.https://itojngpozqjajidmycgf.supabase.co }}/rest/v1/abbonamenti_utente?select=*&limit=1" \
+            -H "apikey: ${{ secrets.sb_publishable_f1su0q3KM0LVulV6gTfNyg_XDXg8a1C }}"
